@@ -28,8 +28,8 @@ class _CustomBottomNavigationBar extends State<CustomBottomNavigationBar> {
   static const List<Widget> _widgetOptions = <Widget>[
     RequestPage(),
     Home(),
+    Faq(),
     Contacts(),
-    Faq()
   ];
 
   void _onItemTap(int index) {

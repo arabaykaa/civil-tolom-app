@@ -24,7 +24,7 @@ class _RequestPage extends State<RequestPage> {
     _userInn = TextEditingController();
     super.initState();
     postData();
-    fetchData();
+    // fetchData();
     finesArray.addAll([]);
   }
 
@@ -40,26 +40,26 @@ class _RequestPage extends State<RequestPage> {
     });
   }
 
-  Future<void> fetchData() async {
-    final url = Uri.parse('https://jsonplaceholder.typicode.com/posts/11');
+  // Future<void> fetchData() async {
+  //   final url = Uri.parse('https://jsonplaceholder.typicode.com/posts/11');
 
-    try {
-      final response = await http.get(url);
+  //   try {
+  //     final response = await http.get(url);
 
-      if (response.statusCode == 200) {
-        final decodedData = jsonDecode(response.body);
-        setState(() {
-          data = decodedData['title'];
-        });
-      } else {
-        setState(() {
-          data = "Failed to fetch! ${response.statusCode}";
-        });
-      }
-    } catch (error) {
-      data = 'Error $error!';
-    }
-  }
+  //     if (response.statusCode == 200) {
+  //       final decodedData = jsonDecode(response.body);
+  //       setState(() {
+  //         data = decodedData['title'];
+  //       });
+  //     } else {
+  //       setState(() {
+  //         data = "Failed to fetch! ${response.statusCode}";
+  //       });
+  //     }
+  //   } catch (error) {
+  //     data = 'Error $error!';
+  //   }
+  // }
 
   Future<void> postData() async {
     final url = Uri.parse('https://jsonplaceholder.typicode.com/posts');
@@ -78,7 +78,7 @@ class _RequestPage extends State<RequestPage> {
       if (response.statusCode == 200) {
         final decode = jsonDecode(response.body);
         setState(() {
-          postedData = decode[""];
+          postedData = decode["title"];
         });
       } else {
         setState(() {
@@ -100,6 +100,18 @@ class _RequestPage extends State<RequestPage> {
             padding: const EdgeInsets.all(8.0),
             child: CustomInput(
               controller: _userInn,
+              label: "Номер машины",
+              // erroValidationText: _errorText,
+              valudator: (value) {
+                if (value.isEmpty) return "Поле не должно быть пустым";
+                if (value.length < 6) {
+                  return "Номер машины должен превышать 6 символов";
+                }
+                if (value.length > 10) {
+                  return "Номер машины не должен превышать 10 символов";
+                }
+                return null;
+              },
             ),
           ),
           // Padding(
@@ -113,8 +125,9 @@ class _RequestPage extends State<RequestPage> {
             child: TextButton(
               onPressed: () {
                 _function();
+                // _validateInput();
               },
-              child: const Text('TextButton #4'),
+              child: const Text('search'),
             ),
           ),
           Padding(
