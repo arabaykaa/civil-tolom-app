@@ -1,5 +1,5 @@
-import 'package:first_flutter_app/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:tolom/widgets/bottom_navigation.dart';
 
 void main() => runApp(const Tolom());
 

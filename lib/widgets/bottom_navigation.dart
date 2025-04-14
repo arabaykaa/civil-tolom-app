@@ -1,8 +1,8 @@
-import 'package:first_flutter_app/pages/contacts.dart';
-import 'package:first_flutter_app/pages/faq.dart';
-import 'package:first_flutter_app/pages/home.dart';
-import 'package:first_flutter_app/pages/request_page.dart';
-import 'package:first_flutter_app/widgets/custom_container.dart';
+import 'package:tolom/pages/contacts.dart';
+import 'package:tolom/pages/faq.dart';
+import 'package:tolom/pages/home.dart';
+import 'package:tolom/pages/request_page.dart';
+import 'package:tolom/widgets/custom_container.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigation extends StatelessWidget {

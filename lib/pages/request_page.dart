@@ -1,6 +1,7 @@
 import 'dart:convert'; // Для кодирования и декодирования JSON
 
-import 'package:first_flutter_app/components/custom_input.dart';
+import 'package:tolom/components/custom_button.dart';
+import 'package:tolom/components/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -63,13 +64,12 @@ class _RequestPage extends State<RequestPage> {
 
   Future<void> postData() async {
     final url = Uri.parse('https://jsonplaceholder.typicode.com/posts');
-
     try {
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json; charset=utf-8'},
         body: jsonEncode({
-          "title": 'foo',
+          "title": _userInn.text,
           "body": 'bar',
           "userId": 11,
         }),
@@ -101,7 +101,6 @@ class _RequestPage extends State<RequestPage> {
             child: CustomInput(
               controller: _userInn,
               label: "Номер машины",
-              // erroValidationText: _errorText,
               valudator: (value) {
                 if (value.isEmpty) return "Поле не должно быть пустым";
                 if (value.length < 6) {
@@ -121,19 +120,18 @@ class _RequestPage extends State<RequestPage> {
           //   ),
           // ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextButton(
-              onPressed: () {
-                _function();
-                // _validateInput();
-              },
-              child: const Text('search'),
-            ),
-          ),
+              padding: const EdgeInsets.all(8.0),
+              child: CustomButton(
+                onPressed: () {
+                  _function();
+                  postData();
+                },
+                text: 'Найти',
+              )),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
-              height: 300, // Указываем конкретную высоту для ListView
+              height: 300,
               child: ListView.builder(
                 itemCount: finesArray.length,
                 itemBuilder: (BuildContext context, int index) {

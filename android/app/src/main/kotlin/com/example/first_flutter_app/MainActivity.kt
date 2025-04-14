@@ -1,4 +1,4 @@
-package com.example.first_flutter_app
+package com.example.tolom
 
 import io.flutter.embedding.android.FlutterActivity
 
